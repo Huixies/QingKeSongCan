@@ -30,7 +30,7 @@
        </div>
        <!-- 登录按钮 -->
        <div class="login_btn">
-           <button>登录</button>
+           <button :disabled='isClick' @click="handleLogin">登录</button>
        </div>
    </div>
 </template>
@@ -48,11 +48,50 @@ export default {
             disabled:false
         };
     },
+    computed:{
+        isClick(){
+            if(!this.phone||!this.verifyCode){
+                return true
+            }else{
+                return false
+            }
+        }
+    },
     methods:{
+        handleLogin(){
+             localStorage.setItem('ele_login',true);
+             this.$router.push('/');
+            //取消错误提醒
+            // this.errors = {};
+            //发送请求
+            // this.$axios.post('/api/posts/sms_back',{
+            //     phone:this.phone,
+            //     code:this.verifyCode
+            // })
+            // .then(res=>{
+            //     console.log(res);
+            //     //检验成功 设置登录状态并且跳转到/
+            //     localStorage.setItem('ele_login',true);
+            //     this.$router.push('/');
+            // })
+            // .catch(err=>{
+            //     //返回错误信息
+            //     this.errors={
+            //         code:err.response.data.msg
+            //     }
+            // })
+        },
         getVerifyCode(){
             if(this.validatePhone()){
                 //发送网络请求
-                this.validateBtn();
+                // this.$axios.post('/api/posts/sms_send',
+                // {
+                //     phone:this.phone
+                // }).then(res=>{
+                //     console.log(res);
+                //       this.validateBtn();
+                // })
+                 this.validateBtn();
             }
         },
         validateBtn(){
