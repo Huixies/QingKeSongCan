@@ -35,6 +35,16 @@ const routes = [
     name: 'login',
     component: ()=>import('./views/Login.vue')
   },
+  {
+    path: '/address',
+    name: 'address',
+    component: ()=>import('./views/Address.vue')
+  },
+  {
+    path: '/city',
+    name: 'city',
+    component: ()=>import('./views/City.vue')
+  }
 ]
 
 const router = new VueRouter({
